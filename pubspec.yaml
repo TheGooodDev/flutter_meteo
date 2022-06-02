@@ -1,4 +1,4 @@
-name: flutter_meteo
+name: weatherit
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -34,9 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http: ^0.13.4
-  sqflite: ^2.0.2+1
-  path: ^1.8.1
+  prompt_dialog: ^1.0.9
 
 dev_dependencies:
   flutter_test:

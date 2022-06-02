@@ -1,4 +1,4 @@
-# flutter_meteo
+# weatherit
 
 A new Flutter project.
 

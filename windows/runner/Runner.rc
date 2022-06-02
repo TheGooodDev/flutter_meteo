@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "flutter_meteo" "\0"
+            VALUE "FileDescription", "weatherit" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_meteo" "\0"
+            VALUE "InternalName", "weatherit" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_meteo.exe" "\0"
-            VALUE "ProductName", "flutter_meteo" "\0"
+            VALUE "OriginalFilename", "weatherit.exe" "\0"
+            VALUE "ProductName", "weatherit" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
