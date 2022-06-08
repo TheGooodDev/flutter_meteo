@@ -8,6 +8,7 @@ class Meteo {
 class Temp {
     int dt;
   Wind wind;
+  double temp;
   double tempMin;
   double tempMax;
   int pressure;
@@ -19,6 +20,7 @@ class Temp {
   Temp(
     this.dt,
       this.wind,
+      this.temp,
       this.tempMin,
       this.tempMax,
       this.pressure,

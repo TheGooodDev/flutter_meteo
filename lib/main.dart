@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController controller;
 
   String name = '';
+  String city = 'lyon';
   late DatabaseHandler handler;
 
   @override
@@ -45,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
     handler.initializeDB().whenComplete(() async {
       handler.deleteCityByName("Ouai");
     });
-    getMeteoData("lyon");
     controller = TextEditingController();
   }
 
@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         setState(() {
                           handler.insertCity(name);
                         });
+                        Navigator.pop;
                       },
                       child: Text('Search City'))
                 ],
@@ -102,7 +103,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: snapshot.data?.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return ListTile(title: Text(snapshot.data![index].name));
+                      return ListTile(
+                        title: Text(snapshot.data![index].name),
+                        onTap: () {
+                          setState(() {
+                            city = snapshot.data![index].name.toLowerCase();
+                          });
+                        },
+                      );
                     },
                   );
                 } else {
@@ -120,21 +128,22 @@ class _MyHomePageState extends State<MyHomePage> {
             return const Text("loading");
           } else if (snapshot.connectionState == ConnectionState.done) {
             return FutureBuilder<Meteo>(
-              future: getMeteoData(snapshot.data![0].name),
+              future: getMeteoData(city),
               builder: (context2, snapshot2) {
                 if (snapshot2.connectionState == ConnectionState.waiting) {
-                  return  const Text("loading");
+                  return const Text("loading");
                 } else if (snapshot2.connectionState == ConnectionState.done) {
-                    Meteo meteo = snapshot2.data!;
+                  Meteo meteo = snapshot2.data!;
                   return Column(
-                    
                     children: [
                       Text(snapshot2.data!.city!.name),
-                      Text(snapshot2.data!.list![0].tempMax.toString()),
-                      Text(DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.fromMillisecondsSinceEpoch(meteo.list![0].dt * 1000)))
+                      Text(snapshot2.data!.list![0].temp.toString()),
+                      Text(DateFormat("yyyy-MM-dd HH:mm:ss").format(
+                          DateTime.fromMillisecondsSinceEpoch(
+                              meteo.list![0].dt * 1000)))
                     ],
                   );
-                }else{
+                } else {
                   return Container();
                 }
               },

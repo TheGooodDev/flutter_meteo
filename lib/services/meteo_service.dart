@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_meteo/utils/glob_var.dart';
 
 Future<Meteo> getMeteoData(String city_name) async {
-  Meteo meteo = Meteo([Temp(0,Wind(0, 0, 0), 0, 0, 0, 0, '', '', '')],
+  Meteo meteo = Meteo([Temp(0,Wind(0, 0, 0), 0, 0, 0,0, 0, '', '', '')],
       CityApi(0, '', '', 0, 0, 0, 0));
   final queryParameters = {
     'q': city_name,
@@ -30,10 +30,11 @@ Future<Meteo> getMeteoData(String city_name) async {
     List<Temp> temperatures = [];
     for (var temps in jsonResponse["list"]) {
       Wind wind = Wind(
-          temps['wind']['speed'].toDouble(), temps['wind']['deg'], temps['wind']['gust']);
+          temps['wind']['speed'].toDouble(), temps['wind']['deg'], temps['wind']['gust'].toDouble());
       temperatures.add(Temp(
           temps['dt'],
           wind,
+          temps['main']['temp'].toDouble(),
           temps['main']['temp_min'].toDouble(),
           temps['main']['temp_max'].toDouble(),
           temps['main']['pressure'],
