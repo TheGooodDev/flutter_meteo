@@ -6,7 +6,7 @@ class Meteo {
 }
 
 class Temp {
-    int dt;
+  int dt;
   Wind wind;
   double temp;
   double tempMin;
@@ -17,17 +17,8 @@ class Temp {
   String description;
   String icon;
 
-  Temp(
-    this.dt,
-      this.wind,
-      this.temp,
-      this.tempMin,
-      this.tempMax,
-      this.pressure,
-      this.humidity,
-      this.main,
-      this.description,
-      this.icon);
+  Temp(this.dt, this.wind, this.temp, this.tempMin, this.tempMax, this.pressure,
+      this.humidity, this.main, this.description, this.icon);
 }
 
 class Wind {
@@ -47,12 +38,6 @@ class CityApi {
   int sunrise;
   int sunset;
 
-  CityApi(
-      this.id,
-      this.name,
-      this.country,
-      this.population,
-      this.timezone,
-      this.sunrise,
-      this.sunset);
+  CityApi(this.id, this.name, this.country, this.population, this.timezone,
+      this.sunrise, this.sunset);
 }

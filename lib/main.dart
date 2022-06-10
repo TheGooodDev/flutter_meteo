@@ -68,7 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 216, 80, 89),
+                color: Color.fromARGB(255, 91, 49, 132),
+                // image: DecorationImage(
+                //   image: AssetImage("images/kamehouse.jpg"),
+                //   fit: BoxFit.cover,
+                // ),
               ),
               child: Column(
                 children: [
@@ -76,7 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     child: Text('Weather`s City',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
                   ),
                   SizedBox(height: 30),
                   ElevatedButton(
