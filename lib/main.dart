@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meteo/db/database.dart';
 import 'package:flutter_meteo/models/city.dart';
@@ -84,9 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white)),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 23),
                   ElevatedButton(
                       onPressed: () async {
+                        //return print(await prompt(context));
                         final name = await SearchButton();
                         if (name == null || name.isEmpty) return;
 
@@ -141,14 +143,259 @@ class _MyHomePageState extends State<MyHomePage> {
                 } else if (snapshot2.connectionState == ConnectionState.done) {
                   Meteo meteo = snapshot2.data!;
                   return Column(
-                    children: [
-                      Text(snapshot2.data!.city!.name),
-                      Text(snapshot2.data!.list![0].temp.toString()),
-                      Text(DateFormat("yyyy-MM-dd HH:mm:ss").format(
-                          DateTime.fromMillisecondsSinceEpoch(
-                              meteo.list![0].dt * 1000)))
-                    ],
-                  );
+                      // children: [
+                      //   Text(snapshot2.data!.city!.name),
+                      //   Text(snapshot2.data!.list![0].temp.toString()),
+                      //   Text(DateFormat("yyyy-MM-dd HH:mm:ss").format(
+                      //       DateTime.fromMillisecondsSinceEpoch(
+                      //           meteo.list![0].dt * 1000)))
+                      // ],
+                      children: [
+                        SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Center(
+                                child: Icon(CupertinoIcons.location_solid,
+                                    color: Colors.black)),
+                            Center(
+                              child: Text(snapshot2.data!.city!.name,
+                                  style: TextStyle(
+                                      fontFamily: 'TestFont',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 27)),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Image.asset(
+                          'assets/images/sun.png',
+                          height: 200,
+                          width: 200,
+                        ),
+                        SizedBox(height: 20),
+                        Center(
+                          child: Text(
+                              snapshot2.data!.list![0].temp.toString() + '°C',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'TestFont',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 70)),
+                        ),
+                        Center(
+                          child: Text(snapshot2.data!.list![0].description,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'TestFont',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20)),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Wrap(
+                              spacing: 10,
+                              children: [
+                                Text('Max. ' +
+                                    snapshot2.data!.list![0].tempMax
+                                        .toString()),
+                                Text('Min. ' +
+                                    snapshot2.data!.list![0].tempMin
+                                        .toString()),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+                            height: 1.0,
+                            width: 300,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 300,
+                          height: 100,
+                          child: new ListView(
+                            children: [
+                              new Container(
+                                height: 80.0,
+                                child: new ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![0].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![0].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![1].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![1].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![2].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![2].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![3].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![3].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![4].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![4].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Card(
+                                          child: new Container(
+                                            width: 70.0,
+                                            height: 70.0,
+                                            child: Column(
+                                              children: [
+                                                Text(snapshot2
+                                                    .data!.list![5].temp
+                                                    .toString()),
+                                                Image.asset(
+                                                  'assets/images/sun.png',
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                                Text(DateFormat("HH:mm").format(
+                                                    DateTime
+                                                        .fromMillisecondsSinceEpoch(
+                                                            meteo.list![5].dt *
+                                                                1000)))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.calendar_month,
+                              size: 20,
+                            ),
+                            Text('Prévision pour les prochains jours')
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Container(
+                            height: 1.0,
+                            width: 300,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        
+                      ]);
                 } else {
                   return Container();
                 }
