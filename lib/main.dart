@@ -3,6 +3,7 @@ import 'package:flutter_meteo/db/database.dart';
 import 'package:flutter_meteo/models/city.dart';
 import 'package:flutter_meteo/models/meteo.dart';
 import 'package:flutter_meteo/services/meteo_service.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/intl.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
 
@@ -15,6 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
     return MaterialApp(
       title: 'Weather It',
       home: const MyHomePage(title: 'Weather It'),
@@ -39,14 +42,27 @@ class _MyHomePageState extends State<MyHomePage> {
   String city = 'lyon';
   late DatabaseHandler handler;
 
+  void initialization() async {
+        print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
+  }
+
   @override
   void initState() {
     super.initState();
+    
     handler = DatabaseHandler();
     handler.initializeDB().whenComplete(() async {
       handler.deleteCityByName("Ouai");
     });
     controller = TextEditingController();
+    initialization();
   }
 
   @override

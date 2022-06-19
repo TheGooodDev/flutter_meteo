@@ -39,6 +39,7 @@ dependencies:
   path: ^1.8.1
   prompt_dialog: ^1.0.9
   intl: ^0.17.0
+  flutter_native_splash: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -92,3 +93,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+# flutter_native_splash-development.yaml
+
+flutter_native_splash:
+  color: FFFFFF
+  
+  web: false
